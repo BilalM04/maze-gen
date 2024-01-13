@@ -10,13 +10,14 @@ public class Main {
     public static void main(String[] args) {
         logger.info("Here goes the business code");
         Configuration config = readConfiguration(args);
-        Random random = buildReproducibleGenerator(config);
+        Random random = buildReproducibleGenerator(config.seed());
         Maze theMaze = new Maze(config, random);
         theMaze.export(config);
     }
-    private static Random buildReproducibleGenerator(Configuration config) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'buildReproducibleGenerator'");
+    private static Random buildReproducibleGenerator(long seed) {
+        Random generator = new Random();
+        generator.setSeed(seed);
+        return generator;
     }
     private static Configuration readConfiguration(String[] args) {
         // TODO Auto-generated method stub
